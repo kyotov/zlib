@@ -16,6 +16,10 @@ TOP = .
 # optional build flags
 LOC =
 
+# extra flags for compiler and linker
+EXTRA_CFLAGS = -MD
+EXTRA_LDFLAGS = -debug -incremental:no
+
 # variables
 STATICLIB = zlib.lib
 SHAREDLIB = zlib1.dll
@@ -26,10 +30,10 @@ AS = ml
 LD = link
 AR = lib
 RC = rc
-CFLAGS  = -nologo -MD -W3 -O2 -Oy- -Zi -Fd"zlib" $(LOC)
+CFLAGS  = -nologo -W3 -O2 -Oy- -Zi -Fd"zlib" $(LOC) $(EXTRA_CFLAGS)
 WFLAGS  = -D_CRT_SECURE_NO_DEPRECATE -D_CRT_NONSTDC_NO_DEPRECATE
 ASFLAGS = -coff -Zi $(LOC)
-LDFLAGS = -nologo -debug -incremental:no -opt:ref
+LDFLAGS = -nologo -opt:ref $(EXTRA_LDFLAGS)
 ARFLAGS = -nologo
 RCFLAGS = /dWIN32 /r
 
